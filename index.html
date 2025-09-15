@@ -53,11 +53,8 @@
     </div>
 
     <script>
-        // ===== 保护代码 =====
-        
-        // 1. 反调试技术
+        // 1. 调试
         function setupAntiDebugging() {
-            // 检测开发者工具
             let devToolsOpen = false;
             
             // 定时检查
@@ -72,7 +69,6 @@
                 }
             }, 1000);
             
-            // 监听键盘事件防止F12等
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'F12' || 
                     (e.ctrlKey && e.shiftKey && e.key === 'I') || 
@@ -82,37 +78,28 @@
                 }
             });
             
-            // 禁用右键菜单
+
             document.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
             });
         }
         
         function handleDevToolsDetection() {
-            document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;"><h2>Access Restricted</h2><p>Please refresh the page to continue.</p></div>';
+            document.body.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;"><p>Please refresh the page to continue.</p></div>';
             throw new Error('Developer tools detected');
         }
         
-        // 2. URL混淆和动态构建
+
         function getContentUrl() {
-            // 在这里设置content.html的路径
-            // 如果content.html在同一目录下，直接使用文件名
             const contentUrl = 'https://vivyan924.github.io/pricing_comparison_yannya_rs/content.html';
-            
-            // 添加随机参数防止缓存和追踪
             const randomParam = 'v=' + Math.random().toString(36).substring(2, 15);
-            
-            // 返回构建的URL
             return contentUrl + '?' + randomParam;
         }
         
-        // 3. 内容加载函数
         function loadContent() {
             try {
-                // 获取混淆后的URL
                 const contentUrl = getContentUrl();
                 
-                // 创建iframe加载内容
                 const iframe = document.createElement('iframe');
                 iframe.style.width = '100%';
                 iframe.style.height = '100%';
@@ -139,16 +126,12 @@
             }
         }
         
-        // 4. 初始化函数
         function init() {
-            // 设置反调试
             setupAntiDebugging();
             
-            // 延迟加载内容，增加分析难度
             setTimeout(loadContent, 1000);
         }
         
-        // 5. 启动初始化
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
