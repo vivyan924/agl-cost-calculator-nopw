@@ -1357,7 +1357,7 @@
                                             <input type="text" id="customTariffRate" value="30" disabled>
                                             <span class="percent-symbol">%</span>
                                         </div>
-                                        <div class="error-message" id="tariffError">Rate must be between 0-100</div>
+                                        <div class="error-message" id="tariffError">Rate must be greater than or equal to 0</div>
                                     </div>
                                 </div>
                             </div>
@@ -2484,7 +2484,7 @@
                                             <input type="text" id="air-customTariffRate" value="30" disabled>
                                             <span class="percent-symbol">%</span>
                                         </div>
-                                        <div class="error-message" id="air-tariffError">Rate must be between 0-100</div>
+                                        <div class="error-message" id="air-tariffError">Rate must be greater than or equal to 0</div>
                                     </div>
                                 </div>
                             </div>
@@ -3346,9 +3346,9 @@ function customAlert(message) {
                 }
                 
                 let numValue = parseFloat(value) || 0;
-                if (numValue > 100) {
-                    numValue = 100;
-                    value = '100';
+                if (numValue < 0) {
+                    numValue = 0;
+                    value = '0';
                 }
                 
                 this.value = value;
@@ -3414,7 +3414,7 @@ function customAlert(message) {
                 
                 let valid = true;
                 
-                if (categorySelect.value === 'custom' && (isNaN(customTariff) || customTariff < 0 || customTariff > 100)) {
+                if (categorySelect.value === 'custom' && (isNaN(customTariff) || customTariff < 0)) {
                     tariffError.style.display = 'block';
                     valid = false;
                 } else {
@@ -3866,7 +3866,7 @@ function customAlert(message) {
                 
                 let valid = true;
                 
-                if (airCategorySelect.value === 'custom' && (isNaN(customTariff) || customTariff < 0 || customTariff > 100)) {
+                if (airCategorySelect.value === 'custom' && (isNaN(customTariff) || customTariff < 0)) {
                     airTariffError.style.display = 'block';
                     valid = false;
                 } else {
