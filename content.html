@@ -469,7 +469,6 @@
             line-height: 1.6;
         }
 		
-		/* 优化instruction页签中的表格样式 - 新增代码开始 */
 		.instructions-content table {
 			width: 100%;
 			border-collapse: collapse;
@@ -1045,12 +1044,40 @@
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
         
-        /* FCL results layout */
-        #fcl-results-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
+		/* FCL results layout */
+		#fcl-results-container {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 15px;
+		}
+
+		#tpl-fcl-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+			margin-top: 15px;
+		}
+
+		/* 响应式调整 */
+		@media (max-width: 1200px) {
+			#fcl-results-container {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			
+			#tpl-fcl-container {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (max-width: 768px) {
+			#fcl-results-container {
+				grid-template-columns: 1fr;
+			}
+			
+			#tpl-fcl-container {
+				grid-template-columns: 1fr;
+			}
+		}
         
         #fcl-results-container .comparison-card {
             margin-bottom: 15px;
@@ -1186,9 +1213,137 @@
             }
         }
 		
-		/* 版本号显示样式 - 添加到CSS最后 */
+		/* 区域分组样式 */
+		.regional-groups-container {
+			display: flex;
+			gap: 15px;
+			margin-bottom: 15px;
+		}
+
+		.regional-group {
+			flex: 1;
+			padding: 10px 12px;
+			background: #f8faff;
+			border-radius: 8px;
+			border: 1px solid #e6e9f0;
+			min-width: 0;
+		}
+		
+		.breakdown-details {
+			margin-left: 15px;
+			font-size: 0.8rem;
+			color: var(--gray);
+		}
+
+		.breakdown-details .breakdown-line {
+			margin-bottom: 2px;
+		}
+
+		.breakdown-details.compact {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-top: 5px;
+		}
+
+		.breakdown-details.compact span {
+			white-space: nowrap;
+		}
+
+		.breakdown-line {
+			font-weight: 500;
+			margin-bottom: 4px;
+		}
+
+		.regional-group .section-title {
+			margin-top: 0;
+			margin-bottom: 8px;
+			font-size: 0.95rem;
+			color: var(--primary-dark);
+			padding-bottom: 5px;
+			border-bottom: 1px solid #e6e9f0;
+		}
+
+		.regional-group .compact-row {
+			margin-bottom: 0;
+			gap: 8px;
+		}
+
+		.regional-group .input-group {
+			padding: 8px 10px;
+			min-width: 100px;
+		}
+
+		.regional-group .input-group label {
+			font-size: 0.9rem;
+			margin-bottom: 5px;
+		}
+
+		.regional-group .input-group input {
+			padding: 8px 10px;
+			font-size: 0.9rem;
+		}
+
+		/* 小屏幕响应式调整 */
+		@media (max-width: 1200px) {
+			.regional-groups-container {
+				flex-direction: column;
+			}
+			
+			.regional-group {
+				min-width: 100%;
+			}
+		}
+		
+		/* 自定义提示框样式 */
+		.custom-alert-modal {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 10000;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.custom-alert-content {
+			background: white;
+			padding: 25px;
+			border-radius: 12px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			max-width: 400px;
+			width: 90%;
+			text-align: center;
+		}
+
+		.custom-alert-message {
+			margin-bottom: 20px;
+			font-size: 1.1rem;
+			color: var(--primary);
+			line-height: 1.5;
+		}
+
+		.custom-alert-ok {
+			background: var(--primary);
+			color: white;
+			border: none;
+			padding: 10px 25px;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 1rem;
+			font-weight: 600;
+		}
+
+		.custom-alert-ok:hover {
+			background: var(--primary-dark);
+		}
+		
+		/* 版本号显示样式 */
 			.sidebar::after {
-				content: "20251027v01"; /* 这里设置您的版本号 */
+				content: "20251105v01"; /* 这里设置您的版本号 */
 				display: block;
 				position: fixed;
 				bottom: 10px;
@@ -1216,6 +1371,56 @@
 					padding: 1px 3px;
 				}
 			}
+			
+			/* 微型明细信息样式 */
+			.breakdown-details-micro {
+				font-size: 0.7rem;
+				color: #888;
+				margin-left: 5px;
+			}
+
+			/* 压缩区域间距 */
+			.breakdown-section {
+				margin-bottom: 3px;
+				line-height: 1.2;
+			}
+			
+			.breakdown-details-micro {
+				font-size: 0.7rem;
+				color: #888;
+				margin-left: 5px;
+			}
+
+			.regional-breakdown {
+				margin-top: 6px;
+			}
+
+			.regional-breakdown {
+				margin-top: 6px;
+			}
+
+			/* SMP FCL 简化显示样式 */
+			.regional-breakdown .formula-line {
+				background: rgba(255,255,255,0.7);
+				border-radius: 3px;
+				padding: 4px;
+				margin-bottom: 6px;
+				font-size: 0.85rem;
+			}
+			
+			/* SMP FCL 简化显示样式 */
+			.regional-breakdown .formula-line {
+				background: rgba(255,255,255,0.7);
+				border-radius: 3px;
+				padding: 4px;
+				margin-bottom: 6px;
+				font-size: 0.85rem;
+			}
+
+			.regional-breakdown .formula-line:last-child {
+				margin-bottom: 0;
+			}
+			
 		
     </style>
 </head>
@@ -1384,59 +1589,102 @@
                         </div>
                         
                         <div class="section-title">Duty Cost, IB fee, Regional distribution</div>
-                        <div class="compact-row">
-                            <div class="input-group">
-                                <label>AGL Declared Value ($/unit)</label>
-                                <input type="number" id="declareValueAGL" min="0" step="0.01" value="1.0">
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>3PL Declared Value ($/unit)</label>
-                                <input type="number" id="declareValue3PL" min="0" step="0.01" value="1.0">
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>West IB Fee ($/unit)</label>
-                                <select id="ibFeeWest">
-                                    <option value="0.3" selected>0.3</option>
-                                    <option value="0.34">0.34</option>
-                                    <option value="0.41">0.41</option>
-                                    <option value="0.49">0.49</option>
-                                    <option value="0.68">0.68</option>
-                                    <option value="1.6">1.6</option>
-                                </select>
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>East IB Fee ($/unit)</label>
-                                <select id="ibFeeEast">
-                                    <option value="0.16" selected>0.16</option>
-                                    <option value="0.18">0.18</option>
-                                    <option value="0.22">0.22</option>
-                                    <option value="0.27">0.27</option>
-                                    <option value="0.37">0.37</option>
-                                    <option value="1.1">1.1</option>
-                                </select>
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>West Unit %</label>
-                                <input type="number" id="westUnitPercent" min="0" max="100" step="0.1" value="34.4">
-                                <div class="error-message" id="westError">Must be between 0-100</div>
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>East Unit %</label>
-                                <input type="number" id="eastUnitPercent" min="0" max="100" step="0.1" value="35">
-                                <div class="error-message" id="eastError">Must be between 0-100</div>
-                            </div>
-                            
-                            <div class="input-group">
-                                <label>Central Unit %</label>
-                                <input type="number" id="centralUnitPercent" min="0" max="100" step="0.1" value="30.6">
-                                <div class="error-message" id="centralError">Must be between 0-100</div>
-                            </div>
-                        </div>
+                        
+						<div class="compact-row">
+							<div class="input-group">
+								<label>AGL Declared Value ($/unit)</label>
+								<input type="number" id="declareValueAGL" min="0" step="0.01" value="1.0">
+							</div>
+							
+							<div class="input-group">
+								<label>3PL Declared Value ($/unit)</label>
+								<input type="number" id="declareValue3PL" min="0" step="0.01" value="1.0">
+							</div>
+							
+							<div class="input-group">
+								<label>West IB Fee ($/unit)</label>
+								<select id="ibFeeWest">
+									<option value="0.3" selected>0.3</option>
+									<option value="0.34">0.34</option>
+									<option value="0.41">0.41</option>
+									<option value="0.49">0.49</option>
+									<option value="0.68">0.68</option>
+									<option value="1.6">1.6</option>
+								</select>
+							</div>
+							
+							<div class="input-group">
+								<label>East IB Fee ($/unit)</label>
+								<select id="ibFeeEast">
+									<option value="0.16" selected>0.16</option>
+									<option value="0.18">0.18</option>
+									<option value="0.22">0.22</option>
+									<option value="0.27">0.27</option>
+									<option value="0.37">0.37</option>
+									<option value="1.1">1.1</option>
+								</select>
+							</div>
+						</div>
+
+						<!-- 区域分配容器 -->
+						<div class="regional-groups-container">
+							<!-- 3PL AOSS区域分配 -->
+							<div class="regional-group">
+								<div class="section-title">Regional Split% for 3PL AOSS</div>
+								<div class="compact-row">
+									<div class="input-group">
+										<label>West Unit %</label>
+										<input type="number" id="westUnitPercent" min="0" max="100" step="0.1" value="34.4">
+										<div class="error-message" id="westError">Must be between 0-100</div>
+									</div>
+									
+									<div class="input-group">
+										<label>East Unit %</label>
+										<input type="number" id="eastUnitPercent" min="0" max="100" step="0.1" value="35">
+										<div class="error-message" id="eastError">Must be between 0-100</div>
+									</div>
+									
+									<div class="input-group">
+										<label>Central Unit %</label>
+										<input type="number" id="centralUnitPercent" min="0" max="100" step="0.1" value="30.6">
+										<div class="error-message" id="centralError">Must be between 0-100</div>
+									</div>
+								</div>
+								<div class="error-message" id="aossPercentError" style="display: none; margin-top: 8px; font-size: 0.8rem;">3PL AOSS percentages must sum to 100%</div>
+							</div>
+
+							<!-- AGL SMP区域分配 -->
+							<div class="regional-group">
+								<div class="section-title">Regional Split% for AGL SMP</div>
+								<div class="compact-row">
+									<div class="input-group">
+										<label>West %</label>
+										<input type="number" id="smpWestPercent" min="0" max="100" step="0.1" value="24">
+									</div>
+									
+									<div class="input-group">
+										<label>Mid-East %</label>
+										<input type="number" id="smpMidEastPercent" min="0" max="100" step="0.1" value="23">
+									</div>
+									
+									<div class="input-group">
+										<label>South East %</label>
+										<input type="number" id="smpSouthEastPercent" min="0" max="100" step="0.1" value="17">
+									</div>
+									
+									<div class="input-group">
+										<label>North East %</label>
+										<input type="number" id="smpNorthEastPercent" min="0" max="100" step="0.1" value="15">
+									</div>
+									
+									<div class="input-group">
+										<label>Central %</label>
+										<input type="number" id="smpCentralPercent" min="0" max="100" step="0.1" value="21">
+									</div>
+								</div>
+								<div class="error-message" id="smpPercentError" style="display: none; margin-top: 8px; font-size: 0.8rem;">SMP percentages must sum to 100%</div>
+							</div>
+						</div>
                         
                         <button class="btn" id="calculateBtn">
                             <i class="fas fa-calculator"></i> Calculate Costs with Pre-set Rates
@@ -1455,23 +1703,69 @@
                                 <div id="fcl-results-container">
                                     <div class="comparison-card agl">
                                         <h4>AGL AMP FCL</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="ampFclCost">$0.00</div>
                                         <div class="formula-breakdown">
-                                            <div class="formula-line">Formula = AMP FCL Fixed fee (Import Clearance) + 40HC fee</div>
+                                            <div class="formula-line">Formula = AMP FCL Fixed fee (Import Clearance) + 40HQ fee</div>
                                             <div class="formula-line">AMP FCL Fixed fee: $<span id="ampFclFixedBooking">0.00</span></div>
-                                            <div class="formula-line">AMP 40HC fee: $<span id="ampFclBooking40HC">0.00</span></div>
+                                            <div class="formula-line">AMP 40HQ fee: $<span id="ampFclBooking40HQ">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per KG: $<span id="ampFclCostPerKg">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per CBM: $<span id="ampFclCostPerCbm">0.00</span></div>
                                         </div>
                                     </div>
+									
+									<div class="comparison-card agl">
+										<h4>AGL SMP FCL (FCL+LCL)</h4>
+										<h5>Single or multi-container (FCL) with possible remaining volume (LCL) calculation</h5>
+										<div class="value" id="smpFclCost">$0.00</div>
+										<div class="formula-breakdown">
+											<div class="formula-line">Formula = Regional(FCL Fixed + 40HQ x container#))+(LCL Fixed + Split volume% x $ per CBM))</div>
+											
+											<div class="regional-breakdown">
+												<div class="breakdown-section">
+													<strong>West:</strong>
+													<span>$<span id="smpWestFclFixedCost">0.00</span> + $<span id="smpWestFcl40HQCost">0.00</span> + $<span id="smpWestLclFixedCost">0.00</span> + $<span id="smpWestLclCbmCost">0.00</span> = $<span id="smpWestTotalCost">0.00</span></span>
+													<span class="breakdown-details-micro">(PO split: <span id="smpWestTotalVolume">0.00</span>CBM; # of ctn: <span id="smpWestFclContainerCount">0</span>; LCL shipments: <span id="smpWestLclShipment">N</span>; LCL: <span id="smpWestLclVolume">0.00</span>CBM)</span>
+												</div>
+												
+												<div class="breakdown-section">
+													<strong>Mid-East:</strong>
+													<span>$<span id="smpMidEastFclFixedCost">0.00</span> + $<span id="smpMidEastFcl40HQCost">0.00</span> + $<span id="smpMidEastLclFixedCost">0.00</span> + $<span id="smpMidEastLclCbmCost">0.00</span> = $<span id="smpMidEastTotalCost">0.00</span></span>
+													<span class="breakdown-details-micro">(PO split: <span id="smpMidEastTotalVolume">0.00</span>CBM; # of ctn: <span id="smpMidEastFclContainerCount">0</span>; LCL shipments: <span id="smpMidEastLclShipment">N</span>; LCL: <span id="smpMidEastLclVolume">0.00</span>CBM)</span>
+												</div>
+												
+												<div class="breakdown-section">
+													<strong>South East:</strong>
+													<span>$<span id="smpSouthEastFclFixedCost">0.00</span> + $<span id="smpSouthEastFcl40HQCost">0.00</span> + $<span id="smpSouthEastLclFixedCost">0.00</span> + $<span id="smpSouthEastLclCbmCost">0.00</span> = $<span id="smpSouthEastTotalCost">0.00</span></span>
+													<span class="breakdown-details-micro">(PO split: <span id="smpSouthEastTotalVolume">0.00</span>CBM; # of ctn: <span id="smpSouthEastFclContainerCount">0</span>; LCL shipments: <span id="smpSouthEastLclShipment">N</span>; LCL: <span id="smpSouthEastLclVolume">0.00</span>CBM)</span>
+												</div>
+												
+												<div class="breakdown-section">
+													<strong>North East:</strong>
+													<span>$<span id="smpNorthEastFclFixedCost">0.00</span> + $<span id="smpNorthEastFcl40HQCost">0.00</span> + $<span id="smpNorthEastLclFixedCost">0.00</span> + $<span id="smpNorthEastLclCbmCost">0.00</span> = $<span id="smpNorthEastTotalCost">0.00</span></span>
+													<span class="breakdown-details-micro">(PO split: <span id="smpNorthEastTotalVolume">0.00</span>CBM; # of ctn: <span id="smpNorthEastFclContainerCount">0</span>; LCL shipments: <span id="smpNorthEastLclShipment">N</span>; LCL: <span id="smpNorthEastLclVolume">0.00</span>CBM)</span>
+												</div>
+												
+												<div class="breakdown-section">
+													<strong>Central:</strong>
+													<span>$<span id="smpCentralFclFixedCost">0.00</span> + $<span id="smpCentralFcl40HQCost">0.00</span> + $<span id="smpCentralLclFixedCost">0.00</span> + $<span id="smpCentralLclCbmCost">0.00</span> = $<span id="smpCentralTotalCost">0.00</span></span>
+													<span class="breakdown-details-micro">(PO split: <span id="smpCentralTotalVolume">0.00</span>CBM; # of ctn: <span id="smpCentralFclContainerCount">0</span>; LCL shipments: <span id="smpCentralLclShipment">N</span>; LCL: <span id="smpCentralLclVolume">0.00</span>CBM)</span>
+												</div>
+											</div>
+											
+											<div class="formula-line cost-per-unit">Total cost per KG: $<span id="smpFclCostPerKg">0.00</span></div>
+											<div class="formula-line cost-per-unit">Total cost per CBM: $<span id="smpFclCostPerCbm">0.00</span></div>
+										</div>
+									</div>
                                     
                                     <div class="comparison-card agl">
                                         <h4>AGL MSS FCL - West</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="aglMssFclWestCost">$0.00</div>
                                         <div class="formula-breakdown">
-                                            <div class="formula-line">Formula = MSS FCL Fixed Fee (Import Clearance) + MSS 40HC fee + (Units × West IB fee)</div>
+                                            <div class="formula-line">Formula = MSS FCL Fixed Fee (Import Clearance) + MSS 40HQ fee + (Units × West IB fee)</div>
                                             <div class="formula-line">MSS Fixed fee: $<span id="aglMssFixedWest">0.00</span></div>
-                                            <div class="formula-line">MSS 40HC fee: $<span id="aglMss40HCWest">0.00</span></div>
+                                            <div class="formula-line">MSS 40HQ fee: $<span id="aglMss40HQWest">0.00</span></div>
                                             <div class="formula-line">IB fee: $<span id="aglMssIBWest">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per KG: $<span id="mssFclWestCostPerKg">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per CBM: $<span id="mssFclWestCostPerCbm">0.00</span></div>
@@ -1480,11 +1774,12 @@
                                     
                                     <div class="comparison-card agl">
                                         <h4>AGL MSS FCL - East</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="aglMssFclEastCost">$0.00</div>
                                         <div class="formula-breakdown">
-                                            <div class="formula-line">Formula = MSS FCL Fixed Fee (Import Clearance) + MSS 40HC fee + (Units × East IB fee)</div>
+                                            <div class="formula-line">Formula = MSS FCL Fixed Fee (Import Clearance) + MSS 40HQ fee + (Units × East IB fee)</div>
                                             <div class="formula-line">MSS Fixed fee: $<span id="aglMssFixedEast">0.00</span></div>
-                                            <div class="formula-line">MSS 40HC fee: $<span id="aglMss40HCEast">0.00</span></div>
+                                            <div class="formula-line">MSS 40HQ fee: $<span id="aglMss40HQEast">0.00</span></div>
                                             <div class="formula-line">IB fee: $<span id="aglMssIBEast">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per KG: $<span id="mssFclEastCostPerKg">0.00</span></div>
 											<div class="formula-line cost-per-unit">Total cost per CBM: $<span id="mssFclEastCostPerCbm">0.00</span></div>
@@ -1495,6 +1790,7 @@
                                 <div id="tpl-fcl-container">
                                     <div class="comparison-card tpl">
                                         <h4>3PL AOSS FCL</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="tplAossFclCost">$0.00</div>
                                         <div class="formula-breakdown">
                                             <div class="formula-line">Formula = (3PL FCL West Rate x West Unit %) + (3PL FCL East Rate x East Unit %) + (3PL FCL Central Rate x Central Unit %)</div>
@@ -1508,6 +1804,7 @@
                                     
                                     <div class="comparison-card tpl">
                                         <h4>3PL MSS FCL - West</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="tplWestCost">$0.00</div>
                                         <div class="formula-breakdown">
                                             <div class="formula-line">Formula = 3PL FCL West rate + (Units × West IB fee)</div>
@@ -1520,6 +1817,7 @@
                                     
                                     <div class="comparison-card tpl">
                                         <h4>3PL MSS FCL - East</h4>
+										<h5>Single container calculation FCL</h5>
                                         <div class="value" id="tplEastCost">$0.00</div>
                                         <div class="formula-breakdown">
                                             <div class="formula-line">Formula = 3PL FCL East rate + (Units × East IB fee)</div>
@@ -1757,9 +2055,45 @@
                         <h3><i class="fas fa-info-circle"></i> Ocean Freight Cost Calculator Instructions</h3>
                         
                         <div class="file-info">
-                            <h4>AGL Rate Card Version: valid from Oct 18, 2025</h4>
+                            <h4>AGL Rate Card Version: valid from Nov 1, 2025</h4>
                         </div>
                         
+						<div class="filter-container" style="margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 6px; display: flex; gap: 15px; flex-wrap: wrap;">
+							<label style="flex: 1; min-width: 150px;">
+								Product: 
+								<select id="productFilter" style="width: 100%; margin-top: 5px;">
+									<option value="all">All</option>
+									<option value="AMP">AMP</option>
+									<option value="MSS">MSS</option>
+									<option value="SMP">SMP</option>
+								</select>
+							</label>
+							<label style="flex: 1; min-width: 150px;">
+								POL: 
+								<select id="polFilter" style="width: 100%; margin-top: 5px;">
+									<option value="all">All</option>
+									<option value="NINGBO">NINGBO</option>
+									<option value="SHANGHAI">SHANGHAI</option>
+									<option value="XIAMEN">XIAMEN</option>
+									<option value="QINGDAO">QINGDAO</option>
+									<option value="TIANJIN">TIANJIN</option>
+									<option value="SHENZHEN">SHENZHEN</option>
+								</select>
+							</label>
+							<label style="flex: 1; min-width: 150px;">
+								Destination Region: 
+								<select id="regionFilter" style="width: 100%; margin-top: 5px;">
+									<option value="all">All</option>
+									<option value="US West">US West</option>
+									<option value="US East">US East</option>
+									<option value="US Central">US Central</option>
+									<option value="US South-East">US South-East</option>
+									<option value="US Mid-East">US Mid-East</option>
+									<option value="US North-East">US North-East</option>
+								</select>
+							</label>
+						</div>
+						
                         <h3>AGL FCL Rates</h3>
                         <table>
                             <thead>
@@ -1787,7 +2121,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>8028.98</td>
+                                    <td>8082.9845</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1799,7 +2133,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>7967.37</td>
+                                    <td>7967.3718</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1811,7 +2145,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>8098.04</td>
+                                    <td>8098.7478</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1823,7 +2157,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>7939.79</td>
+                                    <td>7939.7943</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1835,7 +2169,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>8094.35</td>
+                                    <td>8094.3478</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1847,7 +2181,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>8488.47</td>
+                                    <td>8488.4661</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1871,7 +2205,7 @@
                                     <td>US West</td>
                                     <td>Sort</td>
                                     <td>106</td>
-                                    <td>8057.76</td>
+                                    <td>8057.7563</td>
                                 </tr>
                                 <tr>
                                     <td>US</td>
@@ -1908,7 +2242,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3777.98</td>
+									<td>3777.9845</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1920,7 +2254,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3662.37</td>
+									<td>3662.3718</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1932,7 +2266,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3793.75</td>
+									<td>3793.7478</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1944,7 +2278,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3634，79</td>
+									<td>3634.7943</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1956,7 +2290,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3789.35</td>
+									<td>3789.3478</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1968,7 +2302,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4183.47</td>
+									<td>4183.4661</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -1992,7 +2326,7 @@
 									<td>US West</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>3752.76</td>
+									<td>3752.7563</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2028,7 +2362,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4953.88</td>
+									<td>4953.876</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2040,7 +2374,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4877.2</td>
+									<td>4877.1957</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2052,7 +2386,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4885.52</td>
+									<td>4885.5169</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2064,7 +2398,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4829.31</td>
+									<td>4829.3126</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2076,7 +2410,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4708.26</td>
+									<td>4708.2633</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2088,7 +2422,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4857.9</td>
+									<td>4857.8957</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2100,7 +2434,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>4786.24</td>
+									<td>4786.2436</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2112,7 +2446,7 @@
 									<td>US East</td>
 									<td>Sort</td>
 									<td>106</td>
-									<td>5219.68</td>
+									<td>5219.6845</td>
 								</tr>
 								<tr>
 									<td>US</td>
@@ -2139,9 +2473,630 @@
 									<td>5525</td>
 								</tr>
 								
+								<!-- SMP FCL Rates - NINGBO -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3781.6746</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3780.045</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4829.6845</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4392.9971</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5087.6295</td>
+								</tr>
+
+								<!-- SMP FCL Rates - YANTIAN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>YANTIAN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3667.2577</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>YANTIAN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3665.6281</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>YANTIAN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4692.3788</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>YANTIAN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4306.8309</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>YANTIAN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5069.2971</td>
+								</tr>
+
+								<!-- SMP FCL Rates - SHANGHAI -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3792.2788</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3790.6492</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4716.1154</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4409.245</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5064.6661</td>
+								</tr>
+
+								<!-- SMP FCL Rates - XIAMEN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3637.7239</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3636.0929</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4694.7647</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4482.5183</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4972.1309</td>
+								</tr>
+
+								<!-- SMP FCL Rates - QINGDAO -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3794.4507</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3792.8211</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4486.6704</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4352.4464</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4938.9633</td>
+								</tr>
+
+								<!-- SMP FCL Rates - TIANJIN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4234.1267</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4232.4971</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4688.6267</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4418.8577</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5045.2521</td>
+								</tr>
+
+								<!-- SMP FCL Rates - FUZHOU -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>FUZHOU</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4242</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>FUZHOU</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4242</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>FUZHOU</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4569.3436</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>FUZHOU</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4306.4197</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>FUZHOU</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5014.2563</td>
+								</tr>
+
+								<!-- SMP FCL Rates - HONGKONG -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>HONGKONG</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3752.9394</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>HONGKONG</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>3751.3098</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>HONGKONG</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4999</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>HONGKONG</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4349.1042</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>HONGKONG</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4999</td>
+								</tr>
+
+								<!-- SMP FCL Rates - ZHUHAI -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>ZHUHAI</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4249</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>ZHUHAI</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4249</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>ZHUHAI</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4603.2478</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>ZHUHAI</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4353.014</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>ZHUHAI</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5062.9028</td>
+								</tr>
+
+								<!-- SMP FCL Rates - LIANYUNGANG -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>LIANYUNGANG</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4250</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>LIANYUNGANG</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>4250</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>LIANYUNGANG</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5524</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>LIANYUNGANG</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5524</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>LIANYUNGANG</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>106</td>
+									<td>5524</td>
+								</tr>
+								
                             </tbody>
                         </table>
                         
+												
                         <h3>AGL LCL Rates</h3>
                         <table>
                             <thead>
@@ -2405,22 +3360,502 @@
 									<td>122.2083</td>
 								</tr>
 								
+							<!-- AGL SMP LCL Rates -->
+								<!-- NINGBO -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>46.8169</td>
+									<td>0</td>
+									<td>66.9211</td>
+									<td>66.9211</td>
+									<td>66.9211</td>
+									<td>66.9211</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>46.8169</td>
+									<td>0</td>
+									<td>62.4436</td>
+									<td>62.4436</td>
+									<td>62.4436</td>
+									<td>62.4436</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>46.8169</td>
+									<td>0</td>
+									<td>77.0197</td>
+									<td>77.0197</td>
+									<td>77.0197</td>
+									<td>77.0197</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>46.8169</td>
+									<td>0</td>
+									<td>84.4676</td>
+									<td>84.4676</td>
+									<td>84.4676</td>
+									<td>84.4676</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>NINGBO</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>46.8169</td>
+									<td>0</td>
+									<td>88.5</td>
+									<td>88.5</td>
+									<td>88.5</td>
+									<td>88.5</td>
+								</tr>
+								
+								<!-- SHANGHAI -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>49.5211</td>
+									<td>0</td>
+									<td>64.6211</td>
+									<td>64.6211</td>
+									<td>64.6211</td>
+									<td>64.6211</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>49.5211</td>
+									<td>0</td>
+									<td>60.1422</td>
+									<td>60.1422</td>
+									<td>60.1422</td>
+									<td>60.1422</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>49.5211</td>
+									<td>0</td>
+									<td>75.1521</td>
+									<td>75.1521</td>
+									<td>75.1521</td>
+									<td>75.1521</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>49.5211</td>
+									<td>0</td>
+									<td>80.3535</td>
+									<td>80.3535</td>
+									<td>80.3535</td>
+									<td>80.3535</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHANGHAI</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>49.5211</td>
+									<td>0</td>
+									<td>86.0802</td>
+									<td>86.0802</td>
+									<td>86.0802</td>
+									<td>86.0802</td>
+								</tr>
+								
+								<!-- XIAMEN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>54.0281</td>
+									<td>0</td>
+									<td>64.9253</td>
+									<td>64.9253</td>
+									<td>64.9253</td>
+									<td>64.9253</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>54.0281</td>
+									<td>0</td>
+									<td>60.4478</td>
+									<td>60.4478</td>
+									<td>60.4478</td>
+									<td>60.4478</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>54.0281</td>
+									<td>0</td>
+									<td>79.6887</td>
+									<td>79.6887</td>
+									<td>79.6887</td>
+									<td>79.6887</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>54.0281</td>
+									<td>0</td>
+									<td>83.814</td>
+									<td>83.814</td>
+									<td>83.814</td>
+									<td>83.814</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>XIAMEN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>54.0281</td>
+									<td>0</td>
+									<td>88.2507</td>
+									<td>88.2507</td>
+									<td>88.2507</td>
+									<td>88.2507</td>
+								</tr>
+								
+								<!-- QINGDAO -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>56.7323</td>
+									<td>0</td>
+									<td>67.0225</td>
+									<td>67.0225</td>
+									<td>67.0225</td>
+									<td>67.0225</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>56.7323</td>
+									<td>0</td>
+									<td>62.545</td>
+									<td>62.545</td>
+									<td>62.545</td>
+									<td>62.545</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>56.7323</td>
+									<td>0</td>
+									<td>76.914</td>
+									<td>76.914</td>
+									<td>76.914</td>
+									<td>76.914</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>56.7323</td>
+									<td>0</td>
+									<td>77.2535</td>
+									<td>77.2535</td>
+									<td>77.2535</td>
+									<td>77.2535</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>QINGDAO</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>56.7323</td>
+									<td>0</td>
+									<td>87.0971</td>
+									<td>87.0971</td>
+									<td>87.0971</td>
+									<td>87.0971</td>
+								</tr>
+								
+								<!-- TIANJIN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>47.7183</td>
+									<td>0</td>
+									<td>105.9239</td>
+									<td>105.9239</td>
+									<td>105.4295</td>
+									<td>87.6943</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>47.7183</td>
+									<td>0</td>
+									<td>105.9239</td>
+									<td>105.9239</td>
+									<td>105.4295</td>
+									<td>87.6943</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>47.7183</td>
+									<td>0</td>
+									<td>138.7338</td>
+									<td>138.7338</td>
+									<td>138.1915</td>
+									<td>114.8873</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>47.7183</td>
+									<td>0</td>
+									<td>138.7338</td>
+									<td>138.7338</td>
+									<td>138.1915</td>
+									<td>114.8873</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>TIANJIN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>47.7183</td>
+									<td>0</td>
+									<td>138.7338</td>
+									<td>138.7338</td>
+									<td>138.1915</td>
+									<td>114.8873</td>
+								</tr>
+								
+								<!-- SHENZHEN -->
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHENZHEN</td>
+									<td>US West</td>
+									<td>Sort</td>
+									<td>61.2394</td>
+									<td>0</td>
+									<td>64.7422</td>
+									<td>64.7422</td>
+									<td>64.7422</td>
+									<td>64.7422</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHENZHEN</td>
+									<td>US Central</td>
+									<td>Sort</td>
+									<td>61.2394</td>
+									<td>0</td>
+									<td>60.2647</td>
+									<td>60.2647</td>
+									<td>60.2647</td>
+									<td>60.2647</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHENZHEN</td>
+									<td>US South-East</td>
+									<td>Sort</td>
+									<td>61.2394</td>
+									<td>0</td>
+									<td>75.2521</td>
+									<td>75.2521</td>
+									<td>75.2521</td>
+									<td>75.2521</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHENZHEN</td>
+									<td>US Mid-East</td>
+									<td>Sort</td>
+									<td>61.2394</td>
+									<td>0</td>
+									<td>81.9183</td>
+									<td>81.9183</td>
+									<td>81.9183</td>
+									<td>81.9183</td>
+								</tr>
+								<tr>
+									<td>US</td>
+									<td>SO</td>
+									<td>USD</td>
+									<td>SMP</td>
+									<td>non-FOB</td>
+									<td>SHENZHEN</td>
+									<td>US North-East</td>
+									<td>Sort</td>
+									<td>61.2394</td>
+									<td>0</td>
+									<td>87.6169</td>
+									<td>87.6169</td>
+									<td>87.6169</td>
+									<td>87.6169</td>
+								</tr>
+								
 								
                             </tbody>
                         </table>
-                        
-                        <div class="preset-params">
-                            <h4>SMP Regional Distribution</h4>
-                            <div class="preset-card">
-                                <ul>
-                                    <li>West: 24.9%</li>
-                                    <li>Mid-East: 22.3%</li>
-                                    <li>South East: 16.9%</li>
-                                    <li>North East: 14.7%</li>
-                                    <li>Central: 21.2%</li>
-                                </ul>
-                            </div>
-                        </div>
                         
                         <h3>How to Use</h3>
                         <ol>
@@ -3001,6 +4436,14 @@
         <button class="floating-btn" onclick="scrollToSection('air-resultsSection')">Calculation Results</button>
         <button class="floating-btn" onclick="scrollToSection('tpl-custom-air')">3PL Rate Customization</button>
     </div>
+	
+	<!-- 自定义提示框 -->
+    <div class="custom-alert-modal" id="customAlertModal">
+        <div class="custom-alert-content">
+            <div class="custom-alert-message" id="customAlertMessage"></div>
+            <button class="custom-alert-ok" id="customAlertOK">OK</button>
+        </div>
+    </div>
 
     <script>
 	// 自定义alert函数
@@ -3018,6 +4461,86 @@ function customAlert(message) {
 }
         // Password validation logic
         document.addEventListener('DOMContentLoaded', function() {
+		// 自定义提示函数
+		function showCustomAlert(message) {
+			const modal = document.getElementById('customAlertModal');
+			const messageElement = document.getElementById('customAlertMessage');
+			const okButton = document.getElementById('customAlertOK');
+			
+			messageElement.textContent = message;
+			modal.style.display = 'flex';
+			
+			okButton.onclick = function() {
+				modal.style.display = 'none';
+			};
+			
+			// 点击蒙层也可以关闭
+			modal.onclick = function(e) {
+				if (e.target === modal) {
+					modal.style.display = 'none';
+				}
+			};
+		}
+
+		// Ocean Freight 按钮事件监听
+		document.getElementById('calculateBtn').addEventListener('click', function() {
+			// 显示结果区域，隐藏无结果提示
+			document.getElementById('resultsSection').classList.remove('hidden');
+			document.getElementById('noResultsSection').style.display = 'none';
+				
+			// 在计算完成后显示提示
+			setTimeout(function() {
+				showCustomAlert('Ocean freight cost calculation completed with pre-set rates.');
+			}, 100);
+		});
+
+		document.getElementById('applyCustomRatesBtn').addEventListener('click', function() {
+			// 显示结果区域，隐藏无结果提示
+			document.getElementById('resultsSection').classList.remove('hidden');
+			document.getElementById('noResultsSection').style.display = 'none';
+			
+			setTimeout(function() {
+				showCustomAlert('Custom ocean freight rates have been applied successfully.');
+			}, 100);
+		});
+
+		document.getElementById('resetToPresetBtn').addEventListener('click', function() {
+			// 原有的重置逻辑保持不变...
+			
+			setTimeout(function() {
+				showCustomAlert('Ocean freight rates have been reset to preset values.');
+			}, 100);
+		});
+
+		// Air Freight 按钮事件监听
+		document.getElementById('calculateAirBtn').addEventListener('click', function() {
+			// 显示结果区域，隐藏无结果提示
+			document.getElementById('air-resultsSection').classList.remove('hidden');
+			document.getElementById('air-noResultsSection').style.display = 'none';
+			
+			setTimeout(function() {
+				showCustomAlert('Air freight cost calculation completed with pre-set rates.');
+			}, 100);
+		});
+
+		document.getElementById('applyAirCustomRatesBtn').addEventListener('click', function() {
+			// 原有的应用空运自定义费率逻辑保持不变...
+			
+			setTimeout(function() {
+				showCustomAlert('Air freight custom rates have been applied successfully.');
+			}, 100);
+		});
+
+		document.getElementById('resetAirToPresetBtn').addEventListener('click', function() {
+			// 显示结果区域，隐藏无结果提示
+			document.getElementById('air-resultsSection').classList.remove('hidden');
+			document.getElementById('air-noResultsSection').style.display = 'none';
+			
+			setTimeout(function() {
+				showCustomAlert('Air freight rates have been reset to preset values.');
+			}, 100);
+		});
+		
             
             // 初始化预设参数
             let oceanPresetRates = {
@@ -3063,14 +4586,64 @@ function customAlert(message) {
                 tplExpressSpecialCargo: 0
             };
             
+			// SMP百分比验证函数
+			function validateSMPPercentages() {
+				const smpWest = parseFloat(document.getElementById('smpWestPercent').value) || 0;
+				const smpMidEast = parseFloat(document.getElementById('smpMidEastPercent').value) || 0;
+				const smpSouthEast = parseFloat(document.getElementById('smpSouthEastPercent').value) || 0;
+				const smpNorthEast = parseFloat(document.getElementById('smpNorthEastPercent').value) || 0;
+				const smpCentral = parseFloat(document.getElementById('smpCentralPercent').value) || 0;
+				
+				const total = smpWest + smpMidEast + smpSouthEast + smpNorthEast + smpCentral;
+				const errorElement = document.getElementById('smpPercentError');
+				
+				if (Math.abs(total - 100) > 0.1) {
+					errorElement.style.display = 'block';
+					return false;
+				} else {
+					errorElement.style.display = 'none';
+					return true;
+				}
+			}
+
+			// 为SMP百分比输入框添加事件监听
+			document.getElementById('smpWestPercent').addEventListener('input', validateSMPPercentages);
+			document.getElementById('smpMidEastPercent').addEventListener('input', validateSMPPercentages);
+			document.getElementById('smpSouthEastPercent').addEventListener('input', validateSMPPercentages);
+			document.getElementById('smpNorthEastPercent').addEventListener('input', validateSMPPercentages);
+			document.getElementById('smpCentralPercent').addEventListener('input', validateSMPPercentages);
+			
+			// 3PL AOSS百分比验证函数
+			function validateAOSSPercentages() {
+				const westPercent = parseFloat(document.getElementById('westUnitPercent').value) || 0;
+				const eastPercent = parseFloat(document.getElementById('eastUnitPercent').value) || 0;
+				const centralPercent = parseFloat(document.getElementById('centralUnitPercent').value) || 0;
+				
+				const total = westPercent + eastPercent + centralPercent;
+				const errorElement = document.getElementById('aossPercentError');
+				
+				if (Math.abs(total - 100) > 0.1) {
+					errorElement.style.display = 'block';
+					return false;
+				} else {
+					errorElement.style.display = 'none';
+					return true;
+				}
+			}
+
+			// 为3PL AOSS百分比输入框添加事件监听
+			document.getElementById('westUnitPercent').addEventListener('input', validateAOSSPercentages);
+			document.getElementById('eastUnitPercent').addEventListener('input', validateAOSSPercentages);
+			document.getElementById('centralUnitPercent').addEventListener('input', validateAOSSPercentages);
+			
             // AGL预设费率
             let aglPresetRates = {
                 ampFclFixedBooking: 106,
-                ampFclBooking40HC: 8500,
+                ampFclBooking40HQ: 8500,
                 mssFclFixedWest: 106,
                 mssFclFixedEast: 106,
-                mss40HCWest: 4199,
-                mss40HCEast: 5474,
+                mss40HQWest: 4199,
+                mss40HQEast: 5474,
                 ampLclFixed: 100.89,
                 ampLclRatePerCBM: 162.4,
                 mssLclFixedWest: 100.89,
@@ -3078,16 +4651,16 @@ function customAlert(message) {
                 mssLclRatePerCbmWest: 90.65,
                 mssLclRatePerCbmEast: 122.21,
                 smpRegionalPercents: {
-                    west: 0.249,
-                    midEast: 0.223,
-                    southEast: 0.169,
-                    northEast: 0.147,
-                    central: 0.212
+                    west: 0.24,
+                    midEast: 0.23,
+                    southEast: 0.17,
+                    northEast: 0.15,
+                    central: 0.21
                 }
             };
             
-            // FCL 40HC费用映射表
-            const ampFclBooking40HCRates = {
+            // FCL 40HQ费用映射表
+            const ampFclBooking40HQRates = {
                 "NINGBO": 8028.98,
                 "YANTIAN": 7967.37,
                 "SHANGHAI": 8098.04,
@@ -3099,8 +4672,82 @@ function customAlert(message) {
                 "ZHUHAI": 8514,
                 "LIANYUNGANG": 8515
             };
+			
+			// SMP FCL 40HQ费用映射表
+			const smpFclBooking40HQRates = {
+				"NINGBO": {
+					"US West": 3781.6746,
+					"US Central": 3780.045,
+					"US Mid-East": 4829.6845,
+					"US South-East": 4392.9971,
+					"US North-East": 5087.6295
+				},
+				"YANTIAN": {
+					"US West": 3667.2577,
+					"US Central": 3665.6281,
+					"US Mid-East": 4692.3788,
+					"US South-East": 4306.8309,
+					"US North-East": 5069.2971
+				},
+				"SHANGHAI": {
+					"US West": 3792.2788,
+					"US Central": 3790.6492,
+					"US Mid-East": 4716.1154,
+					"US South-East": 4409.245,
+					"US North-East": 5064.6661
+				},
+				"XIAMEN": {
+					"US West": 3637.7239,
+					"US Central": 3636.0929,
+					"US Mid-East": 4694.7647,
+					"US South-East": 4482.5183,
+					"US North-East": 4972.1309
+				},
+				"QINGDAO": {
+					"US West": 3794.4507,
+					"US Central": 3792.8211,
+					"US Mid-East": 4486.6704,
+					"US South-East": 4352.4464,
+					"US North-East": 4938.9633
+				},
+				"TIANJIN": {
+					"US West": 4234.1267,
+					"US Central": 4232.4971,
+					"US Mid-East": 4688.6267,
+					"US South-East": 4418.8577,
+					"US North-East": 5045.2521
+				},
+				"FUZHOU": {
+					"US West": 4242,
+					"US Central": 4242,
+					"US Mid-East": 4569.3436,
+					"US South-East": 4306.4197,
+					"US North-East": 5014.2563
+				},
+				"HONGKONG": {
+					"US West": 3752.9394,
+					"US Central": 3751.3098,
+					"US Mid-East": 4999,
+					"US South-East": 4349.1042,
+					"US North-East": 4999
+				},
+				"ZHUHAI": {
+					"US West": 4249,
+					"US Central": 4249,
+					"US Mid-East": 4603.2478,
+					"US South-East": 4353.014,
+					"US North-East": 5062.9028
+				},
+				"LIANYUNGANG": {
+					"US West": 4250,
+					"US Central": 4250,
+					"US Mid-East": 5524,
+					"US South-East": 5524,
+					"US North-East": 5524
+				}
+			};
             
-            const mssFclBooking40HCWestRates = {
+            const mssFclBooking40HQWestRates = {
                 "NINGBO": 3777.98,
                 "YANTIAN": 3662.37,
                 "SHANGHAI": 3793.75,
@@ -3113,7 +4760,7 @@ function customAlert(message) {
                 "LIANYUNGANG": 4210
             };
             
-            const mssFclBooking40HCEastRates = {
+            const mssFclBooking40HQEastRates = {
                 "NINGBO": 4953.88,
                 "YANTIAN": 4877.7,
                 "SHANGHAI": 4885.52,
@@ -3150,6 +4797,51 @@ function customAlert(message) {
                 "QINGDAO": { exportClearance: 96.73, reserved: 0, rates: [52.45, 52.45, 52.45, 52.45] },
                 "SHENZHEN": { exportClearance: 101.24, reserved: 0, rates: [83.27, 83.27, 83.27, 83.27] }
             };
+			
+			const smpLclRates = {
+				"NINGBO": {
+					"US West": { fixed: 46.8169, rates: [66.9211, 66.9211, 66.9211, 66.9211] },
+					"US Central": { fixed: 46.8169, rates: [62.4436, 62.4436, 62.4436, 62.4436] },
+					"US South-East": { fixed: 46.8169, rates: [77.0197, 77.0197, 77.0197, 77.0197] },
+					"US Mid-East": { fixed: 46.8169, rates: [84.4676, 84.4676, 84.4676, 84.4676] },
+					"US North-East": { fixed: 46.8169, rates: [88.5, 88.5, 88.5, 88.5] }
+				},
+				"SHANGHAI": {
+					"US West": { fixed: 49.5211, rates: [64.6211, 64.6211, 64.6211, 64.6211] },
+					"US Central": { fixed: 49.5211, rates: [60.1422, 60.1422, 60.1422, 60.1422] },
+					"US South-East": { fixed: 49.5211, rates: [75.1521, 75.1521, 75.1521, 75.1521] },
+					"US Mid-East": { fixed: 49.5211, rates: [80.3535, 80.3535, 80.3535, 80.3535] },
+					"US North-East": { fixed: 49.5211, rates: [86.0802, 86.0802, 86.0802, 86.0802] }
+				},
+				"XIAMEN": {
+					"US West": { fixed: 54.0281, rates: [64.9253, 64.9253, 64.9253, 64.9253] },
+					"US Central": { fixed: 54.0281, rates: [60.4478, 60.4478, 60.4478, 60.4478] },
+					"US South-East": { fixed: 54.0281, rates: [79.6887, 79.6887, 79.6887, 79.6887] },
+					"US Mid-East": { fixed: 54.0281, rates: [83.814, 83.814, 83.814, 83.814] },
+					"US North-East": { fixed: 54.0281, rates: [88.2507, 88.2507, 88.2507, 88.2507] }
+				},
+				"QINGDAO": {
+					"US West": { fixed: 56.7323, rates: [67.0225, 67.0225, 67.0225, 67.0225] },
+					"US Central": { fixed: 56.7323, rates: [62.545, 62.545, 62.545, 62.545] },
+					"US South-East": { fixed: 56.7323, rates: [76.914, 76.914, 76.914, 76.914] },
+					"US Mid-East": { fixed: 56.7323, rates: [77.2535, 77.2535, 77.2535, 77.2535] },
+					"US North-East": { fixed: 56.7323, rates: [87.0971, 87.0971, 87.0971, 87.0971] }
+				},
+				"TIANJIN": {
+					"US West": { fixed: 47.7183, rates: [105.9239, 105.9239, 105.4295, 87.6943] },
+					"US Central": { fixed: 47.7183, rates: [105.9239, 105.9239, 105.4295, 87.6943] },
+					"US South-East": { fixed: 47.7183, rates: [138.7338, 138.7338, 138.1915, 114.8873] },
+					"US Mid-East": { fixed: 47.7183, rates: [138.7338, 138.7338, 138.1915, 114.8873] },
+					"US North-East": { fixed: 47.7183, rates: [138.7338, 138.7338, 138.1915, 114.8873] }
+				},
+				"SHENZHEN": {
+					"US West": { fixed: 61.2394, rates: [64.7422, 64.7422, 64.7422, 64.7422] },
+					"US Central": { fixed: 61.2394, rates: [60.2647, 60.2647, 60.2647, 60.2647] },
+					"US South-East": { fixed: 61.2394, rates: [75.2521, 75.2521, 75.2521, 75.2521] },
+					"US Mid-East": { fixed: 61.2394, rates: [81.9183, 81.9183, 81.9183, 81.9183] },
+					"US North-East": { fixed: 61.2394, rates: [87.6169, 87.6169, 87.6169, 87.6169] }
+				}
+			};
 
             // Air freight rates
             const airAglRates = {
@@ -3400,13 +5092,397 @@ function customAlert(message) {
                 });
             }
             
-            // 计算海运成本
+			// 根据体积获取SMP LCL CBM费率的辅助函数
+			function getSmpLclCbmRateByVolume(pol, region, volume) {
+				const rateData = smpLclRates[pol]?.[region];
+				if (!rateData) return 0;
+				
+				const rates = rateData.rates;
+				let rate;
+				
+				if (volume <= 5) {
+					rate = rates[0];
+				} else if (volume <= 10) {
+					rate = rates[1];
+				} else if (volume <= 15) {
+					rate = rates[2];
+				} else {
+					rate = rates[3];
+				}
+				
+				return rate;
+			}
+			
+			// 计算SMP LCL CBM总费用的函数
+			function calculateSmpLclCbmCost(pol, region, volume) {
+				if (volume <= 0) return 0;
+				
+				const rate = getSmpLclCbmRateByVolume(pol, region, volume);
+				return volume * rate;
+			}
+
+			// 计算海运成本
+			// 计算SMP FCL (FCL+LCL)费用的函数
+			function calculateSmpFclCosts(pol, totalVolume, totalWeight, regionalData) {
+				// SMP FCL固定费用
+				const smpFclFixedFee = 106;
+				
+				// 特殊处理：对于YANTIAN/SHENZHEN，FCL使用YANTIAN费率，LCL使用SHENZHEN费率
+				let fclPol = pol;
+				let lclPol = pol;
+				
+				if (pol === "YANTIAN" || pol === "YANTIAN/SHENZHEN") {
+					fclPol = "YANTIAN";  // FCL部分使用YANTIAN
+					lclPol = "SHENZHEN"; // LCL部分使用SHENZHEN
+				}
+				
+				// 获取SMP LCL固定费用和CBM费率 - 使用调整后的LCL POL
+				const smpLclFixedFee = getSmpLclFixedFee(lclPol);
+				
+				// 计算各区域的FCL和LCL分配
+				const totalPercent = regionalData.west.percent + regionalData.midEast.percent + 
+									regionalData.southEast.percent + regionalData.northEast.percent + 
+									regionalData.central.percent;
+				
+				// 计算各区域的集装箱数量和剩余LCL体积
+				function calculateContainerAndLcl(volume) {
+					let containerCount = 0;
+					let remainingLclVolume = 0;
+					
+					if (volume <= 40) {
+						// 小于等于40 CBM，全部走LCL
+						containerCount = 0;
+						remainingLclVolume = volume;
+					} else if (volume > 68) {
+						// 大于68 CBM，计算整柜数量
+						containerCount = Math.floor(volume / 68);
+						const remainder = volume % 68;
+						
+						if (remainder > 40) {
+							// 余数大于40 CBM，再加一个整柜
+							containerCount += 1;
+							remainingLclVolume = 0;
+						} else {
+							// 余数小于等于40 CBM，余数走LCL
+							remainingLclVolume = remainder;
+						}
+					} else {
+						// 40 < volume <= 68，走一个整柜
+						containerCount = 1;
+						remainingLclVolume = 0;
+					}
+					
+					return { containerCount, remainingLclVolume };
+				}
+
+				// 计算各区域的集装箱数量和LCL体积
+				const westCalc = calculateContainerAndLcl(regionalData.west.cbm);
+				const midEastCalc = calculateContainerAndLcl(regionalData.midEast.cbm);
+				const southEastCalc = calculateContainerAndLcl(regionalData.southEast.cbm);
+				const northEastCalc = calculateContainerAndLcl(regionalData.northEast.cbm);
+				const centralCalc = calculateContainerAndLcl(regionalData.central.cbm);
+
+				const westContainerCount = westCalc.containerCount;
+				const midEastContainerCount = midEastCalc.containerCount;
+				const southEastContainerCount = southEastCalc.containerCount;
+				const northEastContainerCount = northEastCalc.containerCount;
+				const centralContainerCount = centralCalc.containerCount;
+
+				const westLclVolume = westCalc.remainingLclVolume;
+				const midEastLclVolume = midEastCalc.remainingLclVolume;
+				const southEastLclVolume = southEastCalc.remainingLclVolume;
+				const northEastLclVolume = northEastCalc.remainingLclVolume;
+				const centralLclVolume = centralCalc.remainingLclVolume;
+				
+				// 计算各区域FCL费用
+				const westFcl40HQCost = westContainerCount * (smpFclBooking40HQRates[fclPol]?.["US West"] || 0);
+				const midEastFcl40HQCost = midEastContainerCount * (smpFclBooking40HQRates[fclPol]?.["US Mid-East"] || 0);
+				const southEastFcl40HQCost = southEastContainerCount * (smpFclBooking40HQRates[fclPol]?.["US South-East"] || 0);
+				const northEastFcl40HQCost = northEastContainerCount * (smpFclBooking40HQRates[fclPol]?.["US North-East"] || 0);
+				const centralFcl40HQCost = centralContainerCount * (smpFclBooking40HQRates[fclPol]?.["US Central"] || 0);
+				
+				// 计算各区域FCL固定费用
+				const westFclFixedCost = westContainerCount * smpFclFixedFee;
+				const midEastFclFixedCost = midEastContainerCount * smpFclFixedFee;
+				const southEastFclFixedCost = southEastContainerCount * smpFclFixedFee;
+				const northEastFclFixedCost = northEastContainerCount * smpFclFixedFee;
+				const centralFclFixedCost = centralContainerCount * smpFclFixedFee;
+				
+				// 计算各区域LCL费用 - 基于剩余LCL体积和对应的费率区间（使用调整后的LCL POL）
+				const westLclCbmCost = calculateSmpLclCbmCost(lclPol, "US West", westLclVolume);
+				const midEastLclCbmCost = calculateSmpLclCbmCost(lclPol, "US Mid-East", midEastLclVolume);
+				const southEastLclCbmCost = calculateSmpLclCbmCost(lclPol, "US South-East", southEastLclVolume);
+				const northEastLclCbmCost = calculateSmpLclCbmCost(lclPol, "US North-East", northEastLclVolume);
+				const centralLclCbmCost = calculateSmpLclCbmCost(lclPol, "US Central", centralLclVolume);
+				
+				// 计算各区域LCL固定费用（只有有LCL体积时才收取固定费用）
+				const westLclFixedCost = westLclVolume > 0 ? smpLclFixedFee : 0;
+				const midEastLclFixedCost = midEastLclVolume > 0 ? smpLclFixedFee : 0;
+				const southEastLclFixedCost = southEastLclVolume > 0 ? smpLclFixedFee : 0;
+				const northEastLclFixedCost = northEastLclVolume > 0 ? smpLclFixedFee : 0;
+				const centralLclFixedCost = centralLclVolume > 0 ? smpLclFixedFee : 0;
+				
+				// 计算总费用
+				const totalFclFixedCost = westFclFixedCost + midEastFclFixedCost + southEastFclFixedCost + 
+										 northEastFclFixedCost + centralFclFixedCost;
+				const totalFcl40HQCost = westFcl40HQCost + midEastFcl40HQCost + southEastFcl40HQCost + 
+										northEastFcl40HQCost + centralFcl40HQCost;
+				const totalLclFixedCost = westLclFixedCost + midEastLclFixedCost + southEastLclFixedCost + 
+										 northEastLclFixedCost + centralLclFixedCost;
+				const totalLclCbmCost = westLclCbmCost + midEastLclCbmCost + southEastLclCbmCost + 
+									   northEastLclCbmCost + centralLclCbmCost;
+
+				const totalCost = totalFclFixedCost + totalFcl40HQCost + totalLclFixedCost + totalLclCbmCost;
+				
+				// 计算单位成本
+				const costPerKg = totalWeight > 0 ? totalCost / totalWeight : 0;
+				const costPerCbm = totalVolume > 0 ? totalCost / totalVolume : 0;
+				
+				// 添加返回值
+				const result = {
+					totalCost,
+					costPerKg,
+					costPerCbm,
+					west: {
+						containerCount: westContainerCount,
+						fclFixedCost: westFclFixedCost,
+						lclFixedCount: westLclVolume > 0 ? 1 : 0,
+						lclFixedCost: westLclFixedCost,
+						fcl40HQCost: westFcl40HQCost,
+						lclCbmCost: westLclCbmCost,
+						lclVolume: westLclVolume,
+						totalVolume: regionalData.west.cbm  // 添加总CBM用于显示
+					},
+					midEast: {
+						containerCount: midEastContainerCount,
+						fclFixedCost: midEastFclFixedCost,
+						lclFixedCount: midEastLclVolume > 0 ? 1 : 0,
+						lclFixedCost: midEastLclFixedCost,
+						fcl40HQCost: midEastFcl40HQCost,
+						lclCbmCost: midEastLclCbmCost,
+						lclVolume: midEastLclVolume,
+						totalVolume: regionalData.midEast.cbm
+					},
+					southEast: {
+						containerCount: southEastContainerCount,
+						fclFixedCost: southEastFclFixedCost,
+						lclFixedCount: southEastLclVolume > 0 ? 1 : 0,
+						lclFixedCost: southEastLclFixedCost,
+						fcl40HQCost: southEastFcl40HQCost,
+						lclCbmCost: southEastLclCbmCost,
+						lclVolume: southEastLclVolume,
+						totalVolume: regionalData.southEast.cbm
+					},
+					northEast: {
+						containerCount: northEastContainerCount,
+						fclFixedCost: northEastFclFixedCost,
+						lclFixedCount: northEastLclVolume > 0 ? 1 : 0,
+						lclFixedCost: northEastLclFixedCost,
+						fcl40HQCost: northEastFcl40HQCost,
+						lclCbmCost: northEastLclCbmCost,
+						lclVolume: northEastLclVolume,
+						totalVolume: regionalData.northEast.cbm
+					},
+					central: {
+						containerCount: centralContainerCount,
+						fclFixedCost: centralFclFixedCost,
+						lclFixedCount: centralLclVolume > 0 ? 1 : 0,
+						lclFixedCost: centralLclFixedCost,
+						fcl40HQCost: centralFcl40HQCost,
+						lclCbmCost: centralLclCbmCost,
+						lclVolume: centralLclVolume,
+						totalVolume: regionalData.central.cbm
+					}
+				};
+				
+				// 更新UI - 需要传递regionalData参数
+				updateSmpFclUI(result, {
+					west: { cbm: regionalData.west.cbm, percent: regionalData.west.percent },
+					midEast: { cbm: regionalData.midEast.cbm, percent: regionalData.midEast.percent },
+					southEast: { cbm: regionalData.southEast.cbm, percent: regionalData.southEast.percent },
+					northEast: { cbm: regionalData.northEast.cbm, percent: regionalData.northEast.percent },
+					central: { cbm: regionalData.central.cbm, percent: regionalData.central.percent }
+				});
+
+				// 添加返回值
+				return result;
+			}
+
+			// 根据POL和区域获取SMP LCL CBM费率的辅助函数
+			function getSmpLclCbmRateByRegion(pol, region) {
+				const rateMap = {
+					"NINGBO": {
+						"US West": 66.9211,
+						"US Central": 62.4436,
+						"US South-East": 77.0197,
+						"US Mid-East": 84.4676,
+						"US North-East": 88.5
+					},
+					"SHANGHAI": {
+						"US West": 64.6211,
+						"US Central": 60.1422,
+						"US South-East": 75.1521,
+						"US Mid-East": 80.3535,
+						"US North-East": 86.0802
+					},
+					"XIAMEN": {
+						"US West": 64.9253,
+						"US Central": 60.4478,
+						"US South-East": 79.6887,
+						"US Mid-East": 83.814,
+						"US North-East": 88.2507
+					},
+					"QINGDAO": {
+						"US West": 67.0225,
+						"US Central": 62.545,
+						"US South-East": 76.914,
+						"US Mid-East": 77.2535,
+						"US North-East": 87.0971
+					},
+					"TIANJIN": {
+						"US West": 105.9239,
+						"US Central": 105.9239,
+						"US South-East": 138.7338,
+						"US Mid-East": 138.7338,
+						"US North-East": 138.7338
+					},
+					"SHENZHEN": {
+						"US West": 64.7422,
+						"US Central": 60.2647,
+						"US South-East": 75.2521,
+						"US Mid-East": 81.9183,
+						"US North-East": 87.6169
+					},
+					"YANTIAN": {
+						"US West": 64.7422,
+						"US Central": 60.2647,
+						"US South-East": 75.2521,
+						"US Mid-East": 81.9183,
+						"US North-East": 87.6169
+					}
+				};
+				
+				return rateMap[pol]?.[region] || 150;
+			}
+			
+			// 根据POL获取SMP LCL固定费用的辅助函数
+			function getSmpLclFixedFee(pol) {
+				const fixedFeeMap = {
+					"NINGBO": 46.8169,
+					"SHANGHAI": 49.5211,
+					"XIAMEN": 54.0281,
+					"QINGDAO": 56.7323,
+					"TIANJIN": 47.7183,
+					"SHENZHEN": 61.2394,
+					"YANTIAN": 61.2394
+				};
+				
+				return fixedFeeMap[pol] || 50; // 如果找不到，使用默认值
+			}
+
+			// 更新SMP FCL UI显示的函数
+			function updateSmpFclUI(data, regionalData) {
+				// 格式化数字的辅助函数
+				function formatNumber(value) {
+					return parseFloat(value).toFixed(2);
+				}
+				
+				// 更新West区域
+				const westTotal = data.west.fclFixedCost + data.west.fcl40HQCost + data.west.lclFixedCost + data.west.lclCbmCost;
+				document.getElementById('smpWestTotalCost').textContent = formatNumber(westTotal);
+				document.getElementById('smpWestFclFixedCost').textContent = formatNumber(data.west.fclFixedCost);
+				document.getElementById('smpWestFcl40HQCost').textContent = formatNumber(data.west.fcl40HQCost);
+				document.getElementById('smpWestLclFixedCost').textContent = formatNumber(data.west.lclFixedCost);
+				document.getElementById('smpWestLclCbmCost').textContent = formatNumber(data.west.lclCbmCost);
+				document.getElementById('smpWestFclContainerCount').textContent = data.west.containerCount;
+				document.getElementById('smpWestLclShipment').textContent = data.west.lclVolume > 0 ? 'Y' : 'N';
+				document.getElementById('smpWestLclVolume').textContent = formatNumber(data.west.lclVolume);
+				document.getElementById('smpWestTotalVolume').textContent = formatNumber(data.west.totalVolume);
+				
+				// 更新Mid-East区域
+				const midEastTotal = data.midEast.fclFixedCost + data.midEast.fcl40HQCost + data.midEast.lclFixedCost + data.midEast.lclCbmCost;
+				document.getElementById('smpMidEastTotalCost').textContent = formatNumber(midEastTotal);
+				document.getElementById('smpMidEastFclFixedCost').textContent = formatNumber(data.midEast.fclFixedCost);
+				document.getElementById('smpMidEastFcl40HQCost').textContent = formatNumber(data.midEast.fcl40HQCost);
+				document.getElementById('smpMidEastLclFixedCost').textContent = formatNumber(data.midEast.lclFixedCost);
+				document.getElementById('smpMidEastLclCbmCost').textContent = formatNumber(data.midEast.lclCbmCost);
+				document.getElementById('smpMidEastFclContainerCount').textContent = data.midEast.containerCount;
+				document.getElementById('smpMidEastLclShipment').textContent = data.midEast.lclVolume > 0 ? 'Y' : 'N';
+				document.getElementById('smpMidEastLclVolume').textContent = formatNumber(data.midEast.lclVolume);
+				document.getElementById('smpMidEastTotalVolume').textContent = formatNumber(data.midEast.totalVolume);
+				
+				// 更新South-East区域
+				const southEastTotal = data.southEast.fclFixedCost + data.southEast.fcl40HQCost + data.southEast.lclFixedCost + data.southEast.lclCbmCost;
+				document.getElementById('smpSouthEastTotalCost').textContent = formatNumber(southEastTotal);
+				document.getElementById('smpSouthEastFclFixedCost').textContent = formatNumber(data.southEast.fclFixedCost);
+				document.getElementById('smpSouthEastFcl40HQCost').textContent = formatNumber(data.southEast.fcl40HQCost);
+				document.getElementById('smpSouthEastLclFixedCost').textContent = formatNumber(data.southEast.lclFixedCost);
+				document.getElementById('smpSouthEastLclCbmCost').textContent = formatNumber(data.southEast.lclCbmCost);
+				document.getElementById('smpSouthEastFclContainerCount').textContent = data.southEast.containerCount;
+				document.getElementById('smpSouthEastLclShipment').textContent = data.southEast.lclVolume > 0 ? 'Y' : 'N';
+				document.getElementById('smpSouthEastLclVolume').textContent = formatNumber(data.southEast.lclVolume);
+				document.getElementById('smpSouthEastTotalVolume').textContent = formatNumber(data.southEast.totalVolume);
+				
+				// 更新North-East区域
+				const northEastTotal = data.northEast.fclFixedCost + data.northEast.fcl40HQCost + data.northEast.lclFixedCost + data.northEast.lclCbmCost;
+				document.getElementById('smpNorthEastTotalCost').textContent = formatNumber(northEastTotal);
+				document.getElementById('smpNorthEastFclFixedCost').textContent = formatNumber(data.northEast.fclFixedCost);
+				document.getElementById('smpNorthEastFcl40HQCost').textContent = formatNumber(data.northEast.fcl40HQCost);
+				document.getElementById('smpNorthEastLclFixedCost').textContent = formatNumber(data.northEast.lclFixedCost);
+				document.getElementById('smpNorthEastLclCbmCost').textContent = formatNumber(data.northEast.lclCbmCost);
+				document.getElementById('smpNorthEastFclContainerCount').textContent = data.northEast.containerCount;
+				document.getElementById('smpNorthEastLclShipment').textContent = data.northEast.lclVolume > 0 ? 'Y' : 'N';
+				document.getElementById('smpNorthEastLclVolume').textContent = formatNumber(data.northEast.lclVolume);
+				document.getElementById('smpNorthEastTotalVolume').textContent = formatNumber(data.northEast.totalVolume);
+				
+				// 更新Central区域
+				const centralTotal = data.central.fclFixedCost + data.central.fcl40HQCost + data.central.lclFixedCost + data.central.lclCbmCost;
+				document.getElementById('smpCentralTotalCost').textContent = formatNumber(centralTotal);
+				document.getElementById('smpCentralFclFixedCost').textContent = formatNumber(data.central.fclFixedCost);
+				document.getElementById('smpCentralFcl40HQCost').textContent = formatNumber(data.central.fcl40HQCost);
+				document.getElementById('smpCentralLclFixedCost').textContent = formatNumber(data.central.lclFixedCost);
+				document.getElementById('smpCentralLclCbmCost').textContent = formatNumber(data.central.lclCbmCost);
+				document.getElementById('smpCentralFclContainerCount').textContent = data.central.containerCount;
+				document.getElementById('smpCentralLclShipment').textContent = data.central.lclVolume > 0 ? 'Y' : 'N';
+				document.getElementById('smpCentralLclVolume').textContent = formatNumber(data.central.lclVolume);
+				document.getElementById('smpCentralTotalVolume').textContent = formatNumber(data.central.totalVolume);
+				
+				// 更新总费用
+				const totalCost = westTotal + midEastTotal + southEastTotal + northEastTotal + centralTotal;
+				document.getElementById('smpFclCost').textContent = '$' + formatNumber(totalCost);
+				
+				// 更新单位成本
+				const totalWeight = data.west.totalVolume * 200 + data.midEast.totalVolume * 200 + data.southEast.totalVolume * 200 + data.northEast.totalVolume * 200 + data.central.totalVolume * 200;
+				const totalVolume = data.west.totalVolume + data.midEast.totalVolume + data.southEast.totalVolume + data.northEast.totalVolume + data.central.totalVolume;
+				
+				if (document.getElementById('smpFclCostPerKg')) {
+					document.getElementById('smpFclCostPerKg').textContent = formatNumber(totalWeight > 0 ? totalCost / totalWeight : 0);
+				}
+				if (document.getElementById('smpFclCostPerCbm')) {
+					document.getElementById('smpFclCostPerCbm').textContent = formatNumber(totalVolume > 0 ? totalCost / totalVolume : 0);
+				}
+			}
+
+			// 更新区域明细的辅助函数
+			function updateRegionalBreakdown(region, data) {
+				document.getElementById(`smp${region}FclContainerCount`).textContent = data.containerCount;
+				document.getElementById(`smp${region}FclFixedCost`).textContent = data.fclFixedCost.toFixed(2);
+				document.getElementById(`smp${region}LclFixedCount`).textContent = data.lclFixedCount;
+				document.getElementById(`smp${region}LclFixedCost`).textContent = data.lclFixedCost.toFixed(2);
+				document.getElementById(`smp${region}Fcl40HQCost`).textContent = data.fcl40HQCost.toFixed(2);
+				document.getElementById(`smp${region}LclCbmCost`).textContent = data.lclCbmCost.toFixed(2);
+			}
+			
             function calculateCosts() {
                 // 验证输入
-                let tariffInput = customTariffInput.value;
-                if (tariffInput.includes('%')) {
-                    tariffInput = tariffInput.replace('%', '');
-                }
+                if (!validateSMPPercentages()) {
+					return;
+				}
+				
+				let tariffInput = customTariffInput.value;
+				if (tariffInput.includes('%')) {
+					tariffInput = tariffInput.replace('%', '');
+				}
                 const customTariff = parseFloat(tariffInput);
                 const westPercent = parseFloat(document.getElementById('westUnitPercent').value);
                 const eastPercent = parseFloat(document.getElementById('eastUnitPercent').value);
@@ -3472,13 +5548,13 @@ function customAlert(message) {
                 
                 // 获取FCL费率
                 const ampFclFixedBooking = currentAglRates.ampFclFixedBooking;
-                const ampFclBooking40HC = ampFclBooking40HCRates[fclPol] || 8500;
+                const ampFclBooking40HQ = ampFclBooking40HQRates[fclPol] || 8500;
 				// 获取totalKG：
 				const totalKg = lclKgPerCBM * shipmentVolume;
                 
                 // 计算成本
                 // 1. AGL AMP FCL
-                const ampFclCost = ampFclFixedBooking + ampFclBooking40HC;
+                const ampFclCost = ampFclFixedBooking + ampFclBooking40HQ;
                 originalValues['ampFclCost'] = ampFclCost;
 				const ampFclCostPerKg = ampFclCost / totalKg;
 				const ampFclCostPerCbm = ampFclCost / shipmentVolume;
@@ -3487,9 +5563,9 @@ function customAlert(message) {
                 
                 // 2. AGL MSS FCL - West
                 const aglMssFixedWest = currentAglRates.mssFclFixedWest;
-                const aglMss40HCWest = mssFclBooking40HCWestRates[fclPol] || 4199;
+                const aglMss40HQWest = mssFclBooking40HQWestRates[fclPol] || 4199;
                 const aglMssIBWest = ibFeeWest * fclUnits;
-                const aglMssFclWestCost = aglMssFixedWest + aglMss40HCWest + aglMssIBWest;
+                const aglMssFclWestCost = aglMssFixedWest + aglMss40HQWest + aglMssIBWest;
                 originalValues['aglMssFclWestCost'] = aglMssFclWestCost;
 				const mssFclWestCostPerKg = aglMssFclWestCost / totalKg;
 				const mssFclWestCostPerCbm = aglMssFclWestCost / shipmentVolume;
@@ -3498,9 +5574,9 @@ function customAlert(message) {
                 
                 // 3. AGL MSS FCL - East
                 const aglMssFixedEast = currentAglRates.mssFclFixedEast;
-                const aglMss40HCEast = mssFclBooking40HCEastRates[fclPol] || 5474;
+                const aglMss40HQEast = mssFclBooking40HQEastRates[fclPol] || 5474;
                 const aglMssIBEast = ibFeeEast * fclUnits;
-                const aglMssFclEastCost = aglMssFixedEast + aglMss40HCEast + aglMssIBEast;
+                const aglMssFclEastCost = aglMssFixedEast + aglMss40HQEast + aglMssIBEast;
                 originalValues['aglMssFclEastCost'] = aglMssFclEastCost;
 				const mssFclEastCostPerKg = aglMssFclEastCost / totalKg;
 				const mssFclEastCostPerCbm = aglMssFclEastCost / shipmentVolume;
@@ -3546,14 +5622,14 @@ function customAlert(message) {
                 
                 // 更新公式值
                 document.getElementById('ampFclFixedBooking').textContent = ampFclFixedBooking.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                document.getElementById('ampFclBooking40HC').textContent = ampFclBooking40HC.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('ampFclBooking40HQ').textContent = ampFclBooking40HQ.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 
                 document.getElementById('aglMssFixedWest').textContent = aglMssFixedWest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                document.getElementById('aglMss40HCWest').textContent = aglMss40HCWest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('aglMss40HQWest').textContent = aglMss40HQWest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 document.getElementById('aglMssIBWest').textContent = aglMssIBWest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 
                 document.getElementById('aglMssFixedEast').textContent = aglMssFixedEast.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                document.getElementById('aglMss40HCEast').textContent = aglMss40HCEast.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('aglMss40HQEast').textContent = aglMss40HQEast.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 document.getElementById('aglMssIBEast').textContent = aglMssIBEast.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 
                 document.getElementById('tplWestFixed').textContent = currentOceanRates.tplWestFclRate.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -3617,30 +5693,88 @@ function customAlert(message) {
 				document.getElementById('aglMssLclEastCostPerKg').textContent = aglMssLclEastCostPerKg.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 				document.getElementById('aglMssLclEastCostPerCbm').textContent = aglMssLclEastCostPerCbm.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 
-                // 10. AGL SMP LCL
-                const smpFixedFee = (mssLclWestFixedFee + mssLclEastFixedFee) * 2.5; // 动态计算
-                const smpDuty = totalUnitsLCL * declareValueAGL * tariffRate;
+                // 获取用户输入的SMP比例
+				const smpWestPercent = parseFloat(document.getElementById('smpWestPercent').value) / 100;
+				const smpMidEastPercent = parseFloat(document.getElementById('smpMidEastPercent').value) / 100;
+				const smpSouthEastPercent = parseFloat(document.getElementById('smpSouthEastPercent').value) / 100;
+				const smpNorthEastPercent = parseFloat(document.getElementById('smpNorthEastPercent').value) / 100;
+				const smpCentralPercent = parseFloat(document.getElementById('smpCentralPercent').value) / 100;
+				// 计算各区域CBM
+				const westCbm = shipmentVolume * smpWestPercent;
+				const midEastCbm = shipmentVolume * smpMidEastPercent;
+				const southEastCbm = shipmentVolume * smpSouthEastPercent;
+				const northEastCbm = shipmentVolume * smpNorthEastPercent;
+				const centralCbm = shipmentVolume * smpCentralPercent;
 				
-				const smpWestVolume = Math.max(shipmentVolume * currentAglRates.smpRegionalPercents.west, 1);
-				const smpMidEastVolume = Math.max(shipmentVolume * currentAglRates.smpRegionalPercents.midEast, 1);
-				const smpSouthEastVolume = Math.max(shipmentVolume * currentAglRates.smpRegionalPercents.southEast, 1);
-				const smpNorthEastVolume = Math.max(shipmentVolume * currentAglRates.smpRegionalPercents.northEast, 1);
-				const smpCentralVolume = Math.max(shipmentVolume * currentAglRates.smpRegionalPercents.central, 1);
-                
-                // 计算各区域费用
-                const smpWestCost = smpWestVolume * getLclRate(mssLclWestData, smpWestVolume);
-                const smpMidEastCost = smpMidEastVolume * getLclRate(mssLclEastData, smpMidEastVolume);
-                const smpSouthEastCost = smpSouthEastVolume * getLclRate(mssLclEastData, smpSouthEastVolume);
-                const smpNorthEastCost = smpNorthEastVolume * getLclRate(mssLclEastData, smpNorthEastVolume);
-                const smpCentralCost = smpCentralVolume * getLclRate(mssLclWestData, smpCentralVolume);
-                
-                const smpLclCost = smpFixedFee + smpWestCost + smpMidEastCost + smpSouthEastCost + smpNorthEastCost + smpCentralCost + smpDuty;
-                originalValues['smpLclCost'] = smpLclCost;
+				// 创建区域数据对象
+				const regionalData = {
+					west: { 
+						percent: smpWestPercent, 
+						cbm: shipmentVolume * smpWestPercent / 100 
+					},
+					midEast: { 
+						percent: smpMidEastPercent, 
+						cbm: shipmentVolume * smpMidEastPercent / 100 
+					},
+					southEast: { 
+						percent: smpSouthEastPercent, 
+						cbm: shipmentVolume * smpSouthEastPercent / 100 
+					},
+					northEast: { 
+						percent: smpNorthEastPercent, 
+						cbm: shipmentVolume * smpNorthEastPercent / 100 
+					},
+					central: { 
+						percent: smpCentralPercent, 
+						cbm: shipmentVolume * smpCentralPercent / 100 
+					}
+				};
+				
+				// 计算SMP FCL (FCL+LCL)费用
+				const smpFclResult = calculateSmpFclCosts(fclPol, shipmentVolume, totalKg, {
+					west: { cbm: westCbm, percent: smpWestPercent },
+					midEast: { cbm: midEastCbm, percent: smpMidEastPercent },
+					southEast: { cbm: southEastCbm, percent: smpSouthEastPercent },
+					northEast: { cbm: northEastCbm, percent: smpNorthEastPercent },
+					central: { cbm: centralCbm, percent: smpCentralPercent }
+				});
+
+				// 更新SMP FCL总费用显示
+				document.getElementById('smpFclCost').textContent = formatCurrency(smpFclResult.totalCost);
+				document.getElementById('smpFclCostPerKg').textContent = smpFclResult.costPerKg.toFixed(2);
+				document.getElementById('smpFclCostPerCbm').textContent = smpFclResult.costPerCbm.toFixed(2);
+
+				// 存储原始值用于货币切换
+				originalValues['smpFclCost'] = smpFclResult.totalCost;
+
+				// 10. AGL SMP LCL
+				const smpFixedFeePerRegion = smpLclRates[lclPol]["US West"].fixed; // 所有区域固定费用相同，取第一个
+				const smpFixedFee = smpFixedFeePerRegion * 5;
+
+				const smpWestVolume = Math.max(shipmentVolume * smpWestPercent, 1);
+				const smpMidEastVolume = Math.max(shipmentVolume * smpMidEastPercent, 1);
+				const smpSouthEastVolume = Math.max(shipmentVolume * smpSouthEastPercent, 1);
+				const smpNorthEastVolume = Math.max(shipmentVolume * smpNorthEastPercent, 1);
+				const smpCentralVolume = Math.max(shipmentVolume * smpCentralPercent, 1);
+
+				// 使用SMP LCL独立价卡计算各区域费用
+				const smpWestCost = smpWestVolume * getLclRate(smpLclRates[lclPol]["US West"], smpWestVolume);
+				const smpMidEastCost = smpMidEastVolume * getLclRate(smpLclRates[lclPol]["US Mid-East"], smpMidEastVolume);
+				const smpSouthEastCost = smpSouthEastVolume * getLclRate(smpLclRates[lclPol]["US South-East"], smpSouthEastVolume);
+				const smpNorthEastCost = smpNorthEastVolume * getLclRate(smpLclRates[lclPol]["US North-East"], smpNorthEastVolume);
+				const smpCentralCost = smpCentralVolume * getLclRate(smpLclRates[lclPol]["US Central"], smpCentralVolume);
+
+				const smpDuty = totalUnitsLCL * declareValueAGL * tariffRate;
+				const smpLclCost = smpFixedFee + smpWestCost + smpMidEastCost + smpSouthEastCost + smpNorthEastCost + smpCentralCost + smpDuty;
+				
+				document.getElementById('smpLclCost').textContent = formatCurrency(smpLclCost);
 				const smpLclCostPerKg = smpLclCost / totalKg;
 				const smpLclCostPerCbm = smpLclCost / shipmentVolume;
 				document.getElementById('smpLclCostPerKg').textContent = smpLclCostPerKg.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 				document.getElementById('smpLclCostPerCbm').textContent = smpLclCostPerCbm.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 
+				originalValues['smpLclCost'] = smpLclCost;
+				
                 // 11. 3PL AOSS LCL (duty incl.)
                 const aossLclWestCost = (currentOceanRates.tplWestRmbPerKg * Math.max(shipmentVolume * (westPercent/100) * lclKgPerCBM, minKg)) / currentOceanRates.exchangeRate;
                 const aossLclEastCost = (currentOceanRates.tplEastRmbPerKg * Math.max(shipmentVolume * (eastPercent/100) * lclKgPerCBM, minKg)) / currentOceanRates.exchangeRate;
@@ -4160,7 +6294,55 @@ function customAlert(message) {
                 customAlert('Rates reset to preset values!');
             });
         });
+		
+		// 表格筛选功能
+		document.addEventListener('DOMContentLoaded', function() {
+			const productFilter = document.getElementById('productFilter');
+			const polFilter = document.getElementById('polFilter');
+			const regionFilter = document.getElementById('regionFilter');
+			
+			if (productFilter && polFilter && regionFilter) {
+				[productFilter, polFilter, regionFilter].forEach(filter => {
+					filter.addEventListener('change', filterTables);
+				});
+			}
+			
+			function filterTables() {
+				const productValue = productFilter.value;
+				const polValue = polFilter.value;
+				const regionValue = regionFilter.value;
+				
+				// 筛选所有费率表格
+				document.querySelectorAll('table').forEach(table => {
+					const rows = table.querySelectorAll('tbody tr');
+					rows.forEach(row => {
+						const cells = row.querySelectorAll('td');
+						if (cells.length >= 7) {
+							const product = cells[3].textContent.trim();
+							const pol = cells[5].textContent.trim();
+							const region = cells[6].textContent.trim();
+							
+							const showRow = 
+								(productValue === 'all' || product === productValue) &&
+								(polValue === 'all' || pol === polValue) &&
+								(regionValue === 'all' || region === regionValue);
+							
+							row.style.display = showRow ? '' : 'none';
+						}
+					});
+				});
+			}
+		});
+		
     </script>
+	
+	<!-- 自定义提示框 -->
+	<div class="custom-alert-modal" id="customAlertModal">
+		<div class="custom-alert-content">
+			<div class="custom-alert-message" id="customAlertMessage"></div>
+			<button class="custom-alert-ok" id="customAlertOK">OK</button>
+		</div>
+	</div>
 
 	<script>
 	// 禁用右键菜单
